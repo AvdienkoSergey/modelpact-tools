@@ -1,11 +1,16 @@
 {
   "name": "modelpact-tools",
   "version": "0.0.0",
-  "description": "Tools for modelpact",
+  "description": "Tools a model can call, written against the modelpact contract and held to it by tests",
   "keywords": [
     "llm",
     "modelpact",
-    "typescript"
+    "typescript",
+    "tool-calling",
+    "function-calling",
+    "tool-use",
+    "on-device",
+    "browser"
   ],
   "license": "MIT",
   "author": "Sergey Avdienko",
