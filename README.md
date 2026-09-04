@@ -1,6 +1,6 @@
 # modelpact-tools
 
-Tools for modelpact
+Tools a model can call, written against the modelpact contract and held to it by tests
 
 ## Install
 
