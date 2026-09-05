@@ -27,12 +27,23 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./dom": {
+      "types": "./dist/dom/index.d.ts",
+      "import": "./dist/dom/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js"
     }
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
+  "workspaces": [
+    "demo"
+  ],
   "engines": {
     "node": ">=22"
   },
@@ -48,14 +59,21 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "modelpact": ">=2"
+    "modelpact": ">=2",
+    "vitest": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "vitest": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.4.1",
     "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
-    "modelpact": "^2.2.0",
+    "jsdom": "^30.0.1",
+    "modelpact": "^2.2.2",
     "prettier": "^3.9.6",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.69.0",

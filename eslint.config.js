@@ -4,7 +4,10 @@ import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 
 export default defineConfig(
-  { ignores: ["dist/**"] },
+  // `demo/` is its own package, against the published `exports` map, with its
+  // own tsconfig and its own dependencies; linting it from here type-checks it
+  // against the wrong project.
+  { ignores: ["dist/**", "demo/**"] },
   {
     files: ["**/*.ts", "**/*.js"],
     extends: [

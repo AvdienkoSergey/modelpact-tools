@@ -31,3 +31,33 @@ jobs:
         run: npm test
       - if: ${{ !cancelled() }}
         run: npm run build
+
+  # The browser suite is its own job: it needs a Chromium download, and a
+  # failure there should read as "the tools misread a page", not as the package
+  # failing to build.
+  demo:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+
+      # The demo consumes `modelpact-tools` through its `exports` map, so it
+      # needs the built package rather than `src`.
+      - run: npm run build
+      - run: npm run typecheck --workspace demo
+      - if: ${{ !cancelled() }}
+        run: npx playwright install --with-deps chromium
+      - if: ${{ !cancelled() }}
+        run: npm run e2e --workspace demo
+
+      - if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: demo/playwright-report
+          retention-days: 7
