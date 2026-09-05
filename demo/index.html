@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>modelpact-tools</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <!--
+      Two halves, and the split is the whole point. Everything left of the
+      divider is an ordinary page that knows nothing about any of this; the
+      tools on the right read it through `document`, exactly as they would read
+      the app they are dropped into.
+    -->
+    <main class="page" data-testid="page-under-inspection">
+      <header>
+        <h1 id="top">Checkout</h1>
+        <p class="lede">Order <strong>#40817</strong>, placed a moment ago.</p>
+      </header>
+
+      <h2 id="basket-heading">Your basket</h2>
+      <table id="basket">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wide-gamut display</td>
+            <td>1</td>
+            <td>£389.00</td>
+          </tr>
+          <tr>
+            <td>Mechanical keyboard</td>
+            <td>2</td>
+            <td>£118.00</td>
+          </tr>
+          <tr>
+            <td>Braided cable, 2m</td>
+            <td>3</td>
+            <td>£11.50</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td>£659.50</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <h2 id="shipping">Shipping address</h2>
+      <form id="shipping-form">
+        <label
+          >Postcode
+          <input name="postcode" type="text" placeholder="SW1A 1AA" required
+        /></label>
+        <label
+          >Country
+          <select name="country">
+            <option value="GB">United Kingdom</option>
+            <option value="IE">Ireland</option>
+          </select>
+        </label>
+        <label class="check"
+          ><input name="gift" type="checkbox" /> Gift wrap</label
+        >
+      </form>
+
+      <h2 id="payment">Payment</h2>
+      <h3 data-testid="card-fields">Card details</h3>
+      <p>Charged when the order ships. Nothing here is real.</p>
+
+      <div class="actions">
+        <button id="pay" type="submit">Continue to payment</button>
+        <button name="cancel" disabled>Cancel order</button>
+        <button id=":r7:">Save for later</button>
+      </div>
+    </main>
+
+    <aside class="panel">
+      <h2 class="panel-title">modelpact-tools</h2>
+
+      <section>
+        <h3>The kit, and what it costs</h3>
+        <div id="tool-picker" data-testid="tool-picker"></div>
+        <p class="budget" data-testid="budget"></p>
+      </section>
+
+      <section>
+        <h3>Call one by hand</h3>
+        <p class="hint">
+          No model involved — the tool reads the page on the left.
+        </p>
+        <div class="row">
+          <select id="bench-tool" data-testid="bench-tool"></select>
+          <input id="bench-args" data-testid="bench-args" spellcheck="false" />
+          <button id="bench-run" data-testid="bench-run">Run</button>
+        </div>
+        <pre id="bench-out" data-testid="bench-out">
+Pick a tool and press Run.</pre>
+      </section>
+
+      <section>
+        <h3>Ask a model</h3>
+        <div class="row">
+          <select id="provider" data-testid="provider"></select>
+          <span id="access" class="chip" data-testid="access">not asked</span>
+        </div>
+        <div class="row">
+          <input
+            id="ask"
+            data-testid="ask"
+            placeholder="what is on this page?"
+            spellcheck="false"
+          />
+          <button id="send" data-testid="send">Send</button>
+        </div>
+        <ol id="calls" class="calls" data-testid="calls"></ol>
+        <pre id="answer" data-testid="answer"></pre>
+      </section>
+    </aside>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
